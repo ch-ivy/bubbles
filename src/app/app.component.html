@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="bubble-container">
+    <div class="inner">
+      <h1>Welcome to Bubbles</h1>
+      <div class="container" style="height: 400px">
+        <div class="box">
+          <div
+            class="bubble one"
+            [style.width.px]="bbl1"
+            [style.height.px]="bbl1"
+          >
+            <h2>
+              Consumption <span *ngIf="bub1"> {{ bub1 }} KW</span>
+            </h2>
+          </div>
+          <div
+            class="bubble two"
+            [style.width.px]="bbl2"
+            [style.height.px]="bbl2"
+          >
+            <h2 style="text-align: right; margin-left: 60px">
+              Generation <span *ngIf="bub2">{{ bub2 }} KW</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <h3>
+        {{ min }} is <span>{{ percentage }}% </span> of {{ max }}
+      </h3>
+      <div class="input">
+        <input
+          type="number"
+          [(ngModel)]="bub1"
+          placeholder="bubble one KW"
+          name=""
+          id=""
+        />
+        <input
+          type="number"
+          [(ngModel)]="bub2"
+          placeholder="bubble two KW"
+          name=""
+          id=""
+        />
+        <button type="submit" (click)="toggle()">toggle sizes</button>
+      </div>
+    </div>
+  </div>
+</div>
