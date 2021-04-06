@@ -1,3 +1,6 @@
+* {
+  transition: all 1s !important;
+}
 .bubble-container {
   max-width: 100%;
   width: auto;
@@ -11,41 +14,101 @@
     position: relative;
     .box {
       position: absolute;
-      height: 300px;
-      width: 300px;
-      top: 10px;
+      height: 350px;
+      width: 350px;
+      top: 20%;
       left: 0;
+      display: flex;
     }
 
     .bubble {
       width: 300px;
       height: 300px;
-      border-radius: 50%;
+
       transition: all 0.3s;
       position: relative;
+    }
+    .s-one {
+      margin-left: auto;
+      left: 15px;
+    }
+    .s-two {
+      margin-right: auto;
+      right: 12px;
+    }
+    .inner-bb {
+      position: absolute;
+      height: 300px;
+      width: 300px;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
     .one {
       background: rgb(221, 123, 26);
       background: linear-gradient(0deg, #dd7b1a 20%, #f5ac62 62%, #f5d1ac 100%);
-      top: 70px;
-      left: 30px;
       z-index: 1;
+      right: 0;
+      .l-arrow-1 {
+        height: 40px;
+        width: 189px;
+        border: 3px solid #b7b3b3;
+        right: 80%;
+        top: 0;
+        position: absolute;
+        transform: skewX(29deg);
+        border-width: 3px 3px 0 0px;
+      }
     }
 
     .two {
       background: rgb(39, 174, 226);
       background: linear-gradient(0deg, #27aee2 20%, #9edcf4 62%, #e0f3fb 100%);
-      left: 140px;
+      left: 0;
+      top: 50px;
+      .l-arrow-2 {
+        height: 40px;
+        width: 189px;
+        border: 3px solid #b7b3b3;
+        left: 80%;
+        top: 0;
+        position: absolute;
+        transform: skewX(326deg);
+        border-width: 3px 0 0 3px;
+      }
     }
     h2 {
       color: rgb(99, 95, 95);
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      text-align: center;
+      width: 150px;
+      font-style: italic;
+      span {
+        display: block;
+        color: #1e84ac;
+        font-weight: bold;
+        font-style: normal;
+      }
+    }
+    .r-text {
+      margin-left: 60px;
+      position: absolute;
+      bottom: 98%;
+      left: 57%;
+    }
+    .l-text {
+      margin-right: 98px;
+      position: absolute;
+      bottom: 98%;
+      right: 57%;
     }
     h3 {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
       margin-bottom: 30px;
       span {
         color: #27aee2;
+        font-weight: bold;
       }
     }
     input {
