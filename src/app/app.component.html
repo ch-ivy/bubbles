@@ -15,7 +15,8 @@
               [style.height.px]="left_bbl_size"
             >
               <h2 class="l-text">
-                Consumption <span *ngIf="left_input"> {{ left_input }} KW</span>
+                Consumption
+                <span *ngIf="+left_input >= 0"> {{ left_input }} KW</span>
               </h2>
               <div class="l-arrow-1"></div>
             </div>
@@ -33,7 +34,8 @@
               [style.top.px]="m_box_auto == 'g' ? 0 : 50"
             >
               <h2 class="r-text">
-                Generation <span *ngIf="right_input">{{ right_input }} KW</span>
+                Generation
+                <span *ngIf="+right_input >= 0">{{ right_input }} KW</span>
               </h2>
               <div class="l-arrow-2"></div>
             </div>
