@@ -20,13 +20,13 @@ export class AppComponent {
     const bub2 = parseFloat(this.bub2);
     const percentage = Math.min(bub1, bub2) / Math.max(bub1, bub2);
     if (bub1 > bub2) {
-      this.bbl2 = Math.round(percentage * 100);
+      this.bbl2 = Math.round(percentage * 150);
       this.bbl1 = 150;
       this.max = 'Consumption';
       this.min = 'Generation';
     }
     if (bub1 < bub2) {
-      this.bbl1 = Math.round(percentage * 100);
+      this.bbl1 = Math.round(percentage * 150);
       this.bbl2 = 150;
       this.min = 'Consumption';
       this.max = 'Generation';
