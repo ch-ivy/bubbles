@@ -7,7 +7,7 @@
             class="bubble s-one"
             [style.width.px]="minSize"
             [style.height.px]="minSize"
-            [class.my-auto]="m_box_auto == 'c'"
+            [style.left.px]="!righ_bbl_top && percentage < 15 ? 5 : 10"
           >
             <div
               class="inner-bb one"
@@ -25,13 +25,13 @@
             class="bubble s-two"
             [style.width.px]="minSize"
             [style.height.px]="minSize"
-            [class.my-auto]="m_box_auto == 'g'"
+            [style.top.px]="righ_bbl_top ? 0 : 19"
+            [style.right.px]="righ_bbl_top ? 12 : 0"
           >
             <div
               class="inner-bb two"
               [style.width.px]="right_bbl_size"
               [style.height.px]="right_bbl_size"
-              [style.top.px]="m_box_auto == 'g' ? 0 : 50"
             >
               <h2 class="r-text">
                 Generation
