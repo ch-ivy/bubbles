@@ -1,69 +1,17 @@
-<div class="container">
-  <div class="bubble-container">
-    <div class="inner">
-      <div class="container" style="height: 400px">
-        <div class="box">
-          <div
-            class="bubble s-one"
-            [style.width.px]="minSize"
-            [style.height.px]="minSize"
-            [style.left.px]="!righ_bbl_top && percentage < 15 ? 5 : 10"
-          >
-            <div
-              class="inner-bb one"
-              [style.width.px]="left_bbl_size"
-              [style.height.px]="left_bbl_size"
-            >
-              <h2 class="l-text">
-                Consumption
-                <span *ngIf="+left_input >= 0"> {{ left_input }} KW</span>
-              </h2>
-              <div class="l-arrow-1"></div>
-            </div>
-          </div>
-          <div
-            class="bubble s-two"
-            [style.width.px]="minSize"
-            [style.height.px]="minSize"
-            [style.top.px]="righ_bbl_top ? 0 : 19"
-            [style.right.px]="righ_bbl_top ? 12 : 0"
-          >
-            <div
-              class="inner-bb two"
-              [style.width.px]="right_bbl_size"
-              [style.height.px]="right_bbl_size"
-            >
-              <h2 class="r-text">
-                Generation
-                <span *ngIf="+right_input >= 0">{{ right_input }} KW</span>
-              </h2>
-              <div class="l-arrow-2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h3>
-        {{ min }} is <span>{{ percentage }}% </span> of {{ max }}
-      </h3>
-      <div class="input">
-        <input
-          type="number"
-          [(ngModel)]="left_input"
-          placeholder="bubble one KW"
-          min="0"
-          name=""
-          id=""
-        />
-        <input
-          type="number"
-          [(ngModel)]="right_input"
-          placeholder="bubble two KW"
-          min="0"
-          name=""
-          id=""
-        />
-        <button type="submit" (click)="toggle()">toggle sizes</button>
-      </div>
-    </div>
+<div *ngIf="apiLoaded | async" class="mt-5 container">
+  <div class="form-group mt-3">
+    <label for="">Search Address</label>
+    <input
+      ngx-google-places-autocomplete
+      [options]="s_options"
+      (onAddressChange)="AddressChange($event)"
+      type="text"
+      class="form-control"
+      aria-describedby="helpId"
+    />
+  </div>
+  {{ formattedaddress }}
+  <div class="my-3 mx-auto col-12">
+    <google-map [options]="m_options"></google-map>
   </div>
 </div>
