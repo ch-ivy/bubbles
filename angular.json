@@ -66,7 +66,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bubble:build"
+            "browserTarget": "bubble:build",
+            "port": 3600
           },
           "configurations": {
             "production": {

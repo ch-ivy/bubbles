@@ -1,10 +1,16 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { GoogleMap, MapGeocoder } from '@angular/google-maps';
-import { ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import Map from 'ol/Map';
+import View from 'ol/View';
+import * as olProj from 'ol/proj';
+import XYZ from 'ol/source/XYZ';
+import { FullScreen, defaults as defaultControls } from 'ol/control';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { OSM, Vector as VectorSource } from 'ol/source';
+import Draw from 'ol/interaction/Draw';
+import { Icon, Style } from 'ol/style';
+import Point from 'ol/geom/Point';
+import Feature from 'ol/Feature';
+import { Modify } from 'ol/interaction';
 
 @Component({
   selector: 'app-root',
@@ -12,108 +18,63 @@ import { ElementRef } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  /**
-   *
-   */
-  apiLoaded: Observable<boolean>;
-  loaded = new BehaviorSubject<boolean>(false);
-  allPanels = [];
-  selectedPanel: any;
+  map: Map;
+  control: 'move' | 'build' | 'delete' = 'move';
+  draw: Draw;
+  source = new VectorSource({ wrapX: false });
+  features = [];
+  vectorLayer = new VectorLayer({
+    source: this.source,
+    style: new Style({
+      image: new Icon({
+        src: '../assets/panel.svg',
+        scale: 1.5,
+      }),
+    }),
+  });
 
-  @ViewChild(GoogleMap, { static: false }) set map(m: GoogleMap) {
-    if (m) {
-      this.initDrawingManager(m);
-    }
-  }
-
-  drawingManager: any;
-
-  m_options: google.maps.MapOptions = {
-    zoom: 25,
-    maxZoom: 30,
-    center: { lat: 35.28012407249113, lng: 33.89656978540845 },
-    mapTypeId: 'satellite',
-    rotateControl: true,
-  };
-
-  //Local Variable defined
-  formattedaddress = ' ';
-  s_options = {
-    componentRestrictions: {
-      country: ['USA'],
-    },
-  };
-  public AddressChange(address: any) {
-    //setting address from API to local variable
-    this.formattedaddress = address.formatted_address;
-  }
-  constructor(
-    httpClient: HttpClient,
-    private geocoder: MapGeocoder,
-    private elRef: ElementRef
-  ) {
-    this.apiLoaded = httpClient
-      .jsonp(
-        'https://maps.googleapis.com/maps/api/js?key=' +
-          environment.AGM_KEY +
-          '&libraries=places,drawing&language=en',
-        'callback'
-      )
-      .pipe(
-        map(() => {
-          this.loaded.next(true);
-          return true;
-        }),
-        catchError(() => of(false))
-      );
-  }
+  constructor() {}
 
   ngOnInit() {
-    this.loaded.subscribe((x) => {
-      console.log(x);
-      if (x) {
-        this.geocoder
-          .geocode({
-            address: '1600 Amphitheatre Parkway, Mountain View, CA',
-          })
-          .subscribe((results) => {
-            console.log(results);
-          });
-      }
+    this.map = new Map({
+      controls: defaultControls().extend([new FullScreen()]),
+
+      target: 'hotel_map',
+      layers: [
+        new TileLayer({
+          source: new XYZ({
+            url: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+          }),
+        }),
+        this.vectorLayer,
+      ],
+      view: new View({
+        center: olProj.fromLonLat([7.0785, 51.4614]),
+        zoom: 20,
+        rotation: 8,
+      }),
     });
   }
-  initDrawingManager(map: GoogleMap) {
-    const markerOptions: any = {
-      icon: '../assets/panel.svg',
-      draggable: true,
-      optimized: true,
-    };
-    const drawingOptions = {
-      drawingMode: google.maps.drawing.OverlayType.MARKER,
-      drawingControl: true,
-      drawingControlOptions: {
-        position: google.maps.ControlPosition.TOP_LEFT,
-        drawingModes: [google.maps.drawing.OverlayType.MARKER],
-      },
-      markerOptions,
-    };
-    this.drawingManager = new google.maps.drawing.DrawingManager(
-      drawingOptions
-    );
-    this.drawingManager.setMap(map.googleMap);
+
+  toggleControls(type: 'move' | 'build' | 'delete') {
+    this.control = type;
+    this.map.removeInteraction(this.draw);
+
+    this.addInteraction();
   }
 
-  addMarker(event: google.maps.MapMouseEvent) {
-    console.log(event);
-  }
-  setSelection(shape) {
-    this.selectedPanel = shape;
-    shape.setEditable(true);
-  }
-
-  deleteSelectedShape() {
-    if (this.selectedPanel) {
-      this.selectedPanel.setMap(null);
+  addInteraction() {
+    if (this.control === 'build') {
+      this.draw = new Draw({
+        source: this.source,
+        type: 'Point',
+        style: new Style({
+          image: new Icon({
+            src: '../assets/panel.svg',
+          }),
+        }),
+      });
+      this.map.addInteraction(this.draw);
     }
   }
 }

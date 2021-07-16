@@ -1,17 +1,34 @@
-<div *ngIf="apiLoaded | async" class="mt-5 container">
+<div class="mt-5 container">
   <div class="form-group mt-3">
     <label for="">Search Address</label>
-    <input
-      ngx-google-places-autocomplete
-      [options]="s_options"
-      (onAddressChange)="AddressChange($event)"
-      type="text"
-      class="form-control"
-      aria-describedby="helpId"
-    />
+    <input type="text" class="form-control" aria-describedby="helpId" />
   </div>
-  {{ formattedaddress }}
-  <div class="my-3 mx-auto col-12">
-    <google-map [options]="m_options"></google-map>
+  <div class="controls">
+    <ul class="control-list">
+      <li
+        class="icon"
+        (click)="toggleControls('move')"
+        [class.active]="control === 'move'"
+      >
+        <span class="material-icons-outlined"> front_hand </span>
+      </li>
+      <li
+        class="icon"
+        (click)="toggleControls('build')"
+        [class.active]="control === 'build'"
+      >
+        <span class="material-icons-outlined"> calendar_view_month </span>
+      </li>
+      <li
+        class="icon"
+        (click)="toggleControls('delete')"
+        [class.active]="control === 'delete'"
+      >
+        <span class="material-icons-outlined"> delete </span>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div id="hotel_map"></div>
   </div>
 </div>

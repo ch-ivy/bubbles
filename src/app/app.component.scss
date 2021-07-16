@@ -1,131 +1,34 @@
-* {
-  transition: all 0.5s !important;
+#hotel_map {
+  height: 500px;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
-.bubble-container {
-  max-width: 100%;
-  width: auto;
-  padding: 30px 15px;
+
+.controls {
   position: relative;
-  .inner {
-    margin: 9vh auto;
-    width: 250px;
-    height: 170px;
-    position: relative;
-    .box {
-      position: relative;
-      height: 250px;
-      width: 170px;
-      top: 20%;
-      left: 0;
-      display: flex;
-      margin: auto;
-    }
-
-    .bubble {
-      width: 80px;
-      height: 80px;
-
-      transition: all 0.3s;
-      position: relative;
-    }
-    .s-one {
-      margin-left: auto;
-      left: 10px;
-    }
-    .s-two {
-      margin-right: auto;
-      right: 12px;
-      top: 10px;
-    }
-    .inner-bb {
-      position: absolute;
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      transition: all 0.3s;
-    }
-    .one {
-      background: rgb(221, 123, 26);
-      background: linear-gradient(0deg, #dd7b1a 20%, #f5ac62 62%, #f5d1ac 100%);
-      z-index: 1;
-      right: 0;
-      .l-arrow-1 {
-        height: 14px;
-        width: 70px;
-        border: 3px solid #b7b3b3;
-        right: 80%;
-        top: 0;
-        position: absolute;
-        transform: skewX(29deg);
-        border-width: 3px 3px 0 0px;
-      }
-    }
-
-    .two {
-      background: rgb(39, 174, 226);
-      background: linear-gradient(0deg, #27aee2 20%, #9edcf4 62%, #e0f3fb 100%);
-      left: 0;
-      .l-arrow-2 {
-        height: 14px;
-        width: 70px;
-        border: 3px solid #b7b3b3;
-        left: 80%;
-        top: 0;
-        position: absolute;
-        transform: skewX(326deg);
-        border-width: 3px 0 0 3px;
-      }
-    }
-    h2 {
-      color: rgb(99, 95, 95);
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-      text-align: center;
-      width: 150px;
-      font-style: italic;
-      font-size: 16px;
+  height: 50px;
+  // margin-bottom: 30px;
+  .control-list {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    height: 50px;
+    padding: 5px 0;
+    list-style: none;
+    box-shadow: 4px 9px 8px #232222;
+    border-radius: 7px;
+    li {
+      float: left;
+      padding: 5px;
+      cursor: pointer;
       span {
-        display: block;
-        color: #1e84ac;
-        font-weight: bold;
-        font-style: normal;
+        font-size: 32px;
       }
-    }
-    .r-text {
-      position: absolute;
-      bottom: 98%;
-      left: 22%;
-    }
-    .l-text {
-      position: absolute;
-      bottom: 98%;
-      right: 30%;
-    }
-    h3 {
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-      margin-bottom: 30px;
-      font-size: 18px;
-      span {
-        color: #27aee2;
-        font-weight: bold;
-      }
-    }
-    input {
-      height: 30px;
-      width: 100px;
-      margin: auto 5px;
-      border-radius: 5px;
-      padding-left: 15px;
-      padding-right: 15px;
-      border: 1px solid rgb(218, 217, 217);
-    }
-    button {
-      margin: 10px;
-      text-transform: capitalize;
-    }
-    .input {
-      display: flex;
     }
   }
+}
+.active {
+  color: white !important;
+  background-color: black !important;
 }
