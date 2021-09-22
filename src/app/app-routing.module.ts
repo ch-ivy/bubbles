@@ -4,7 +4,7 @@ import { MapComponent } from './map/map.component';
 import { Map2Component } from './map2/map2.component';
 
 const routes: Routes = [
-  { path: '3', component: MapComponent },
+  { path: '1', component: MapComponent },
   {
     path: '2',
     component: Map2Component,
