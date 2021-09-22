@@ -1,34 +1,9 @@
-<div class="mt-5 container">
-  <div class="form-group mt-3">
-    <label for="">Search Address</label>
-    <input type="text" class="form-control" aria-describedby="helpId" />
-  </div>
-  <div class="controls">
-    <ul class="control-list">
-      <li
-        class="icon"
-        (click)="toggleControls('move')"
-        [class.active]="control === 'move'"
-      >
-        <span class="material-icons-outlined"> front_hand </span>
-      </li>
-      <li
-        class="icon"
-        (click)="toggleControls('build')"
-        [class.active]="control === 'build'"
-      >
-        <span class="material-icons-outlined"> calendar_view_month </span>
-      </li>
-      <li
-        class="icon"
-        (click)="toggleControls('delete')"
-        [class.active]="control === 'delete'"
-      >
-        <span class="material-icons-outlined"> delete </span>
-      </li>
-    </ul>
-  </div>
-  <div class="row">
-    <div id="hotel_map"></div>
-  </div>
-</div>
+<a [routerLink]="['/1']">
+  <button>Map1</button>
+</a>
+
+<a [routerLink]="['/2']">
+  <button>Map2</button>
+</a>
+
+<router-outlet></router-outlet>

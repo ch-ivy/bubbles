@@ -6,20 +6,21 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { GoogleMapsModule } from '@angular/google-maps';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { MapComponent } from './map/map.component';
+import { Map2Component } from './map2/map2.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MapComponent, Map2Component],
   imports: [
     BrowserModule,
     FormsModule,
-    GoogleMapsModule,
     HttpClientModule,
     HttpClientJsonpModule,
     BrowserAnimationsModule,
     LayoutModule,
-    GooglePlaceModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
